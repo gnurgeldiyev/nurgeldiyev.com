@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { featured } from "@/config/content";
 import { getLinkPreview } from "@/lib/enrich";
 import { ExternalIcon } from "./icons";
@@ -5,7 +6,10 @@ import { ExternalIcon } from "./icons";
 // Server Component — pulls the site's real preview photo from Restor's OpenGraph.
 export default async function FeaturedCard() {
   const preview = await getLinkPreview(featured.url);
-  const image = preview.image;
+  // This image is the mobile LCP — request a smaller size from Restor's
+  // resizer (the URL carries a ?width= param) so it isn't a 528 KB payload.
+  const image = preview.image?.replace(/([?&]width=)\d+/i, "$1800");
+  if (image) preload(image, { as: "image", fetchPriority: "high" });
 
   return (
     <a
@@ -21,7 +25,8 @@ export default async function FeaturedCard() {
             <img
               src={image}
               alt={preview.title}
-              loading="lazy"
+              fetchPriority="high"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
