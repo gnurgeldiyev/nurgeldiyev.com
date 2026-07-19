@@ -1,0 +1,29 @@
+{
+  "name": "nurgeldiyev-com",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "next": "^16.2.10",
+    "next-mdx-remote": "^6.0.0",
+    "gray-matter": "^4.0.3",
+    "reading-time": "^1.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tailwindcss": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.2.10"
+  }
+}
