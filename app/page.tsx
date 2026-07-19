@@ -27,9 +27,9 @@ export default function Home() {
       <JsonLd data={siteGraph()} />
       <ProfileHeader />
 
-      {/* Featured bento row */}
-      <div className="mt-8 grid grid-cols-2 gap-3">
-        <div className="row-span-2">
+      {/* Featured bento row — stacks on phones, 2-col bento at sm+ */}
+      <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="sm:row-span-2">
           <FeaturedCard />
         </div>
         <MapCard />

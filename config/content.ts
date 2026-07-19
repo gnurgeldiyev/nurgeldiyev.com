@@ -150,8 +150,8 @@ export interface EventClip {
 }
 
 export const events: EventClip[] = [
-  { title: "Monaco GP", caption: "Formula 1", video: "/videos/f1.MOV" },
-  { title: "Fashion Week", caption: "Front row", video: "/videos/fashion.mov" },
-  { title: "Jazz & dining", caption: "Late nights", video: "/videos/jazz.mov" },
-  { title: "Nobel Week", caption: "Stockholm", video: "/videos/nobelweek.mov" },
+  { title: "Monaco GP", caption: "Formula 1", video: "/videos/f1.mp4" },
+  { title: "Fashion Week", caption: "Front row", video: "/videos/fashion.mp4" },
+  { title: "Jazz & dining", caption: "Late nights", video: "/videos/jazz.mp4" },
+  { title: "Nobel Week", caption: "Stockholm", video: "/videos/nobelweek.mp4" },
 ];
