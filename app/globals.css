@@ -10,7 +10,7 @@
   --color-surface-2: #f3f2ec;
   --color-ink: #1a1a17;
   --color-ink-soft: #52514a;
-  --color-ink-faint: #8a897f;
+  --color-ink-faint: #6b6a61; /* ~5:1 on paper — WCAG AA for small text */
   --color-line: #e7e5dc;
   --color-accent: #1f7a4d;
   --color-accent-soft: #e4f0e7;
@@ -50,7 +50,7 @@
   --surface-2: #1e211c;
   --text: #f2f1ea;
   --text-soft: #b4b3a8;
-  --text-faint: #7d7c72;
+  --text-faint: #8a897f; /* ~5.4:1 on dark bg — WCAG AA */
   --line: #292c25;
   --accent: #57c98a;
   --accent-soft: #14251b;
