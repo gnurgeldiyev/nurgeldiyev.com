@@ -5,7 +5,7 @@ import { MapPinIcon } from "./icons";
 export default function ProfileHeader() {
   return (
     <header className="animate-[fade-up_0.5s_ease]">
-      <div className="flex items-start gap-5">
+      <div className="flex items-center gap-5">
         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl ring-1 ring-line sm:h-24 sm:w-24">
           <Image
             src={profile.avatar}
@@ -16,7 +16,7 @@ export default function ProfileHeader() {
             priority
           />
         </div>
-        <div className="min-w-0 pt-1">
+        <div className="min-w-0">
           <h1 className="font-display text-3xl leading-tight text-main sm:text-4xl">
             {profile.name}
           </h1>
