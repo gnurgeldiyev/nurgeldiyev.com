@@ -25,9 +25,9 @@ export default function PostsBrowser({ items, tags }: { items: Item[]; tags: str
 
   return (
     <>
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        {/* Topic filter */}
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="mb-6 flex items-center gap-3">
+        {/* Topic filter — scrolls horizontally on mobile, wraps on sm+ */}
+        <div className="no-scrollbar flex min-w-0 flex-1 items-center gap-2 overflow-x-auto sm:flex-wrap">
           <Chip active={tag === null} onClick={() => setTag(null)}>
             All
           </Chip>
@@ -83,12 +83,11 @@ function Chip({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={
-        "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors " +
-        (active
+      className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+        active
           ? "border-transparent bg-accent-soft text-accent"
-          : "border-line bg-card text-soft hover:text-main")
-      }
+          : "border-line bg-card text-soft hover:text-main"
+      }`}
     >
       {children}
     </button>
@@ -109,10 +108,9 @@ function SortButton({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={
-        "rounded-full px-3 py-1 transition-colors " +
-        (active ? "bg-accent text-white" : "text-soft hover:text-main")
-      }
+      className={`rounded-full px-3 py-1 transition-colors ${
+        active ? "bg-accent text-white" : "text-soft hover:text-main"
+      }`}
     >
       {children}
     </button>
