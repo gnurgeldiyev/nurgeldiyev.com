@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // Enriched link/Spotify thumbnails come from arbitrary hosts, so we render
   // them with plain <img>. next/image is reserved for local assets below.
   images: {
+    // Keep the optimized copy of the (remote, enriched) featured image warm
+    // for 31 days so it isn't re-fetched from Restor on every cold cache.
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       { protocol: "https", hostname: "i.scdn.co" },
       { protocol: "https", hostname: "**.spotifycdn.com" },
