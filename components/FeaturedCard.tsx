@@ -1,15 +1,20 @@
 import { preload } from "react-dom";
+import Image from "next/image";
 import { featured } from "@/config/content";
 import { getLinkPreview } from "@/lib/enrich";
 import { ExternalIcon } from "./icons";
 
+const IMG_SIZES = "(max-width: 640px) 100vw, 320px";
+
 // Server Component — pulls the site's real preview photo from Restor's OpenGraph.
 export default async function FeaturedCard() {
   const preview = await getLinkPreview(featured.url);
-  // This image is the mobile LCP — request a smaller size from Restor's
-  // resizer (the URL carries a ?width= param) so it isn't a 528 KB payload.
   const image = preview.image?.replace(/([?&]width=)\d+/i, "$1800");
-  if (image) preload(image, { as: "image", fetchPriority: "high" });
+  // This image is the LCP. If it's a host we've whitelisted, run it through
+  // Vercel image optimization (WebP/AVIF + edge cache). Otherwise fall back to
+  // a plain eager <img> + preload so we never break on an unexpected host.
+  const optimizable = !!image && /^https:\/\/[^/]+\.restor\.eco\//i.test(image);
+  if (image && !optimizable) preload(image, { as: "image", fetchPriority: "high" });
 
   return (
     <a
@@ -21,14 +26,25 @@ export default async function FeaturedCard() {
       <div className="relative flex-1 overflow-hidden bg-card-2">
         {image ? (
           <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={image}
-              alt={preview.title}
-              fetchPriority="high"
-              decoding="async"
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-            />
+            {optimizable ? (
+              <Image
+                src={image}
+                alt={preview.title}
+                fill
+                priority
+                sizes={IMG_SIZES}
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              />
+            ) : (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={image}
+                alt={preview.title}
+                fetchPriority="high"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
           </>
         ) : (

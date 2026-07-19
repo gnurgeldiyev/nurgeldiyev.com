@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "i.scdn.co" },
       { protocol: "https", hostname: "**.spotifycdn.com" },
+      // Featured card image (LCP) — let Vercel optimize + edge-cache it.
+      { protocol: "https", hostname: "**.restor.eco" },
+      { protocol: "https", hostname: "storage.googleapis.com" },
     ],
   },
   async headers() {
