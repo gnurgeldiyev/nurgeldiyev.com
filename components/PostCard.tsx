@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { Post, PostType } from "@/lib/posts";
 import { formatPostDate } from "@/lib/posts";
+import ExpandableBody from "./ExpandableBody";
 import LinkPreviewCard from "./LinkPreviewCard";
 import SpotifyTrack from "./SpotifyTrack";
 import { ArrowIcon, MapPinIcon } from "./icons";
@@ -60,10 +61,18 @@ export default async function PostCard({
           </h3>
         ))}
 
-      {/* Body */}
-      <div className="prose-post mt-3 text-[15px]">
-        <MDXRemote source={post.content} />
-      </div>
+      {/* Body — clamped and expandable in list cards, always full standalone */}
+      {standalone ? (
+        <div className="prose-post mt-3 text-[15px]">
+          <MDXRemote source={post.content} />
+        </div>
+      ) : (
+        <ExpandableBody>
+          <div className="prose-post text-[15px]">
+            <MDXRemote source={post.content} />
+          </div>
+        </ExpandableBody>
+      )}
 
       {/* Type-specific enriched attachment */}
       {post.type === "link" && post.url && <LinkPreviewCard url={post.url} />}

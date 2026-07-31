@@ -94,6 +94,14 @@ export function ArrowIcon(p: IconProps) {
   );
 }
 
+export function ChevronDownIcon(p: IconProps) {
+  return (
+    <svg {...base({ fill: "none", ...p })} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
 export function ExternalIcon(p: IconProps) {
   return (
     <svg {...base({ fill: "none", ...p })} stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
